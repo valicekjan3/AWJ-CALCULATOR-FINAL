@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 START - AWJ Kalkulačka</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 700px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        h1 {
+            color: #667eea;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+
+        .success {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            color: #155724;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .btn {
+            padding: 20px 40px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.5);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+        }
+
+        .info-box {
+            background: #f8f9fa;
+            border-left: 5px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+            border-radius: 5px;
+        }
+
+        .info-box h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .info-box p {
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .emoji {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .steps {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .steps h3 {
+            color: #856404;
+            margin-bottom: 15px;
+        }
+
+        .steps ol {
+            margin-left: 20px;
+            line-height: 2;
+        }
+
+        .steps li {
+            color: #333;
+            font-weight: 500;
+        }
+
+        .note {
+            background: #d1ecf1;
+            border: 2px solid #17a2b8;
+            color: #0c5460;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-weight: 500;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .btn {
+                font-size: 1.1rem;
+                padding: 15px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="emoji">🎉</div>
+        <h1>Vítejte v AWJ Kalkulačce!</h1>
+        <p class="subtitle">Úspěšně jste otevřeli startovací stránku</p>
+
+        <div class="success">
+            ✅ Gratulujeme! Toto je HTML soubor a funguje správně!
+        </div>
+
+        <div class="info-box">
+            <h3>📖 Co je AWJ Kalkulačka?</h3>
+            <p>AWJ Kalkulačka je nástroj pro výpočet parametrů abrasivního vodního paprsku (Abrasive Water Jet). Pomůže vám spočítat rychlost řezání, spotřebu materiálů a náklady.</p>
+        </div>
+
+        <div class="steps">
+            <h3>🚀 Jak spustit kalkulačku:</h3>
+            <ol>
+                <li><strong>Našli jste složku s kalkulačkou</strong> ✅</li>
+                <li><strong>Otevřeli jste START.html</strong> ✅ (to děláte právě teď)</li>
+                <li><strong>Nyní klikněte na zelené tlačítko níže</strong> 👇</li>
+            </ol>
+        </div>
+
+        <div class="button-container">
+            <a href="awj-complete.html" class="btn btn-primary">
+                🌊 SPUSTIT AWJ KALKULAČKU
+            </a>
+
+            <a href="index.html" class="btn btn-secondary">
+                📊 Alternativní verze (index.html)
+            </a>
+        </div>
+
+        <div class="note">
+            <strong>💡 TIP:</strong> Pokud se vám nelíbí, že se to otevírá v tomto prohlížeči, můžete zkusit otevřít soubor <strong>awj-complete.html</strong> v jiném prohlížeči (Chrome, Firefox, Edge).
+        </div>
+
+        <div class="info-box">
+            <h3>❓ Stále nevíte jak na to?</h3>
+            <p><strong>1. Kde jsou soubory?</strong></p>
+            <p>Soubory by měly být ve složce s názvem <code>AWJ-CALCULATOR-FINAL</code></p>
+
+            <p style="margin-top: 15px;"><strong>2. Jaké soubory tam jsou?</strong></p>
+            <p>
+                • <strong>START.html</strong> ← Právě ho máte otevřený<br>
+                • <strong>awj-complete.html</strong> ← Hlavní kalkulačka<br>
+                • <strong>index.html</strong> ← Alternativní verze<br>
+                • styles.css, script.js - pomocné soubory
+            </p>
+
+            <p style="margin-top: 15px;"><strong>3. Jak to otevřít?</strong></p>
+            <p>Stejně jako jste otevřeli tento soubor! Prostě dvojklik na awj-complete.html</p>
+        </div>
+
+        <div style="margin-top: 30px; padding-top: 20px; border-top: 2px solid #eee;">
+            <p style="color: #666; font-size: 0.9rem;">
+                AWJ Kalkulačka © 2025 | Verze 1.0.0
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Log pro debugging
+        console.log('START.html úspěšně načten!');
+        console.log('AWJ Kalkulačka je připravena k použití.');
+        console.log('Klikněte na zelené tlačítko pro spuštění kalkulačky.');
+
+        // Kontrola existence souborů
+        window.addEventListener('load', function() {
+            console.log('✅ JavaScript funguje správně!');
+        });
+    </script>
+</body>
+</html>

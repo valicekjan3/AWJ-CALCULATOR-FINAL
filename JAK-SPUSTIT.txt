@@ -1,0 +1,215 @@
+═══════════════════════════════════════════════════════════════
+   🚀 JAK SPUSTIT AWJ KALKULAČKU - JEDNODUCHÝ NÁVOD
+═══════════════════════════════════════════════════════════════
+
+📌 RYCHLÝ START (3 KROKY):
+═══════════════════════════════════════════════════════════════
+
+KROK 1: Najděte složku s kalkulačkou
+   └─ Název složky: AWJ-CALCULATOR-FINAL
+   └─ V ní jsou soubory s příponou .html
+
+KROK 2: Najděte soubor START.html
+   └─ Je to soubor s ikonkou prohlížeče
+   └─ Má příponu .html
+
+KROK 3: Otevřete soubor START.html
+   └─ DVOJKLIK myší na START.html
+   └─ Otevře se vám stránka v prohlížeči
+   └─ Klikněte na zelené tlačítko
+
+
+═══════════════════════════════════════════════════════════════
+   📖 PODROBNÝ NÁVOD PRO WINDOWS
+═══════════════════════════════════════════════════════════════
+
+1. Otevřete složku AWJ-CALCULATOR-FINAL
+   (tam, kde jste si projekt stáhli nebo naklonovali)
+
+2. V této složce najdete několik souborů:
+
+   📄 START.html          ← ZAČNĚTE TADY! (dvojklik)
+   📄 awj-complete.html   ← Hlavní kalkulačka
+   📄 index.html          ← Alternativní verze
+   📄 styles.css          ← Pomocný soubor
+   📄 script.js           ← Pomocný soubor
+   📄 README.md           ← Dokumentace
+   📄 INSTRUKCE.md        ← Podrobné instrukce
+   📄 JAK-SPUSTIT.txt     ← Tento soubor
+
+3. DVOJKLIK na soubor START.html
+
+   Co se stane:
+   ✅ Otevře se vám webový prohlížeč
+   ✅ Uvidíte uvítací stránku
+   ✅ Bude tam zelené tlačítko "SPUSTIT AWJ KALKULAČKU"
+
+4. KLIKNĚTE na zelené tlačítko
+
+   ✅ Otevře se vám AWJ Kalkulačka
+   ✅ Uvidíte formulář s parametry
+   ✅ Kalkulačka okamžitě funguje!
+
+
+═══════════════════════════════════════════════════════════════
+   🍎 PODROBNÝ NÁVOD PRO MAC
+═══════════════════════════════════════════════════════════════
+
+1. Otevřete složku AWJ-CALCULATOR-FINAL
+   (v Finderu)
+
+2. Najděte soubor START.html
+
+3. DVOJKLIK na START.html
+   (otevře se v Safari nebo vašem výchozím prohlížeči)
+
+4. KLIKNĚTE na zelené tlačítko "SPUSTIT AWJ KALKULAČKU"
+
+ALTERNATIVNĚ:
+- Pravý klik na START.html
+- Vyberte "Otevřít v aplikaci"
+- Vyberte Chrome, Firefox nebo Safari
+
+
+═══════════════════════════════════════════════════════════════
+   🐧 PODROBNÝ NÁVOD PRO LINUX
+═══════════════════════════════════════════════════════════════
+
+1. Otevřete složku AWJ-CALCULATOR-FINAL
+   (ve správci souborů)
+
+2. Najděte soubor START.html
+
+3. DVOJKLIK na START.html
+   NEBO
+   Pravý klik → "Otevřít v prohlížeči"
+
+4. KLIKNĚTE na zelené tlačítko
+
+
+═══════════════════════════════════════════════════════════════
+   ❓ CO KDYŽ TO NEFUNGUJE?
+═══════════════════════════════════════════════════════════════
+
+PROBLÉM 1: Nemůžu najít složku AWJ-CALCULATOR-FINAL
+────────────────────────────────────────────────────
+✅ ŘEŠENÍ:
+   - Složka je tam, kde jste si projekt stáhli
+   - Podívejte se do složky Downloads (Stažené soubory)
+   - Nebo hledejte podle názvu "AWJ-CALCULATOR"
+
+
+PROBLÉM 2: Nic se nestane když kliknu na START.html
+────────────────────────────────────────────────────
+✅ ŘEŠENÍ 1: Zkuste pravý klik
+   - Pravý klik na START.html
+   - Vyberte "Otevřít v aplikaci" nebo "Open with"
+   - Vyberte Google Chrome, Firefox nebo Edge
+
+✅ ŘEŠENÍ 2: Přetáhněte soubor do prohlížeče
+   - Otevřete Google Chrome (nebo jiný prohlížeč)
+   - Přetáhněte soubor START.html přímo do okna prohlížeče
+
+
+PROBLÉM 3: Otevře se mi něco jiného (ne prohlížeč)
+────────────────────────────────────────────────────
+✅ ŘEŠENÍ:
+   - Pravý klik na START.html
+   - "Otevřít v aplikaci" → vyberte Chrome, Firefox, Edge, Safari
+   - NEBO přetáhněte START.html do již otevřeného prohlížeče
+
+
+PROBLÉM 4: Nemám nainstalovaný prohlížeč
+────────────────────────────────────────────────────
+✅ ŘEŠENÍ:
+   Windows má předinstalovaný: Edge nebo Internet Explorer
+   Mac má předinstalovaný: Safari
+   Linux má obvykle: Firefox
+
+   Pokud žádný nemáte, stáhněte si:
+   - Google Chrome: www.google.com/chrome
+   - Mozilla Firefox: www.mozilla.org/firefox
+
+
+═══════════════════════════════════════════════════════════════
+   🎯 KTERÉ SOUBORY MŮŽU OTEVŘÍT?
+═══════════════════════════════════════════════════════════════
+
+✅ START.html
+   └─ Startovací stránka s tlačítkem (DOPORUČENO pro začátek)
+
+✅ awj-complete.html
+   └─ Hlavní kalkulačka - vše v jednom souboru
+   └─ Můžete otevřít přímo (bez START.html)
+
+✅ index.html
+   └─ Alternativní verze kalkulačky
+   └─ Potřebuje styles.css a script.js ve stejné složce
+
+❌ styles.css
+   └─ Neotevírejte přímo - je to pomocný soubor
+
+❌ script.js
+   └─ Neotevírejte přímo - je to pomocný soubor
+
+
+═══════════════════════════════════════════════════════════════
+   💡 NEJRYCHLEJŠÍ ZPŮSOB (PRO POKROČILÉ)
+═══════════════════════════════════════════════════════════════
+
+1. Otevřete Google Chrome (nebo jiný prohlížeč)
+
+2. Zmáčkněte: Ctrl + O  (na Windows/Linux)
+             Cmd + O   (na Mac)
+
+3. Najděte složku AWJ-CALCULATOR-FINAL
+
+4. Vyberte soubor: awj-complete.html
+
+5. Klikněte "Otevřít"
+
+✅ Kalkulačka se okamžitě otevře!
+
+
+═══════════════════════════════════════════════════════════════
+   📞 STÁLE TO NEFUNGUJE?
+═══════════════════════════════════════════════════════════════
+
+Napište mi prosím:
+
+1. Jaký máte operační systém? (Windows, Mac, Linux)
+
+2. Co se stane když dvojkliknete na START.html?
+   - Otevře se prohlížeč?
+   - Otevře se jiný program?
+   - Nic se nestane?
+
+3. Jaký prohlížeč máte nainstalovaný?
+   - Chrome, Firefox, Edge, Safari, jiný?
+
+4. Kde máte složku AWJ-CALCULATOR-FINAL?
+   - Na ploše?
+   - Ve stažených souborech?
+   - Jinde?
+
+
+═══════════════════════════════════════════════════════════════
+   ✅ KONTROLNÍ SEZNAM
+═══════════════════════════════════════════════════════════════
+
+□ Našel jsem složku AWJ-CALCULATOR-FINAL
+□ Ve složce je soubor START.html
+□ Dvojklik na START.html mi otevře prohlížeč
+□ V prohlížeči vidím uvítací stránku
+□ Klikl jsem na zelené tlačítko
+□ Otevřela se mi AWJ Kalkulačka
+□ Vidím formulář s parametry
+□ FUNGUJE! 🎉
+
+
+═══════════════════════════════════════════════════════════════
+
+💚 Pokud máte jakékoliv problémy, neváhejte se zeptat!
+   Pomohu vám kalkulačku zprovoznit! 😊
+
+═══════════════════════════════════════════════════════════════
