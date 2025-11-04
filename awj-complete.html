@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWJ Kalkulačka - Kompletní verze</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        main {
+            padding: 30px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .card h2 {
+            color: #667eea;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .input-group {
+            margin-bottom: 16px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .results {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 2px solid #667eea;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px;
+            margin-bottom: 8px;
+            background: white;
+            border-radius: 6px;
+            border-left: 4px solid #667eea;
+        }
+
+        .result-label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .result-value {
+            font-weight: 700;
+            color: #667eea;
+            font-family: 'Courier New', monospace;
+        }
+
+        .result-item.total {
+            background: #fff3cd;
+            border-left-color: #ff6b6b;
+        }
+
+        .result-item.total .result-value {
+            color: #ff6b6b;
+            font-size: 1.2rem;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        button {
+            padding: 14px 32px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .btn-secondary:hover {
+            background: #f8f9fa;
+        }
+
+        footer {
+            background: #1e293b;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌊 AWJ Kalkulačka</h1>
+            <p class="subtitle">Kalkulačka parametrů abrasivního vodního paprsku</p>
+        </header>
+
+        <main>
+            <div class="grid">
+                <!-- Základní parametry -->
+                <div class="card">
+                    <h2>Základní parametry</h2>
+                    <div class="input-group">
+                        <label>Tlak (MPa):</label>
+                        <input type="number" id="pressure" value="380" min="100" max="620">
+                    </div>
+                    <div class="input-group">
+                        <label>Průměr trysky (mm):</label>
+                        <input type="number" id="orifice" value="0.33" min="0.1" max="0.5" step="0.01">
+                    </div>
+                    <div class="input-group">
+                        <label>Průměr fokusační trubice (mm):</label>
+                        <input type="number" id="focusTube" value="1.02" min="0.5" max="2.0" step="0.01">
+                    </div>
+                    <div class="input-group">
+                        <label>Průtok abrasiva (g/min):</label>
+                        <input type="number" id="abrasiveFlow" value="350" min="0" max="800">
+                    </div>
+                </div>
+
+                <!-- Materiál a řezání -->
+                <div class="card">
+                    <h2>Materiál a řezání</h2>
+                    <div class="input-group">
+                        <label>Materiál:</label>
+                        <select id="material">
+                            <option value="1.0">Ocel</option>
+                            <option value="1.2">Nerezová ocel</option>
+                            <option value="0.6">Hliník</option>
+                            <option value="1.5">Titan</option>
+                            <option value="0.8">Sklo</option>
+                            <option value="1.3">Kámen</option>
+                            <option value="1.4">Keramika</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Tloušťka materiálu (mm):</label>
+                        <input type="number" id="thickness" value="10" min="0.5" max="200">
+                    </div>
+                    <div class="input-group">
+                        <label>Kvalita řezu:</label>
+                        <select id="quality">
+                            <option value="4.0">Q1 - Separační řez</option>
+                            <option value="2.5">Q3 - Hrubý řez</option>
+                            <option value="1.0" selected>Q5 - Standardní řez</option>
+                            <option value="0.4">Q7 - Přesný řez</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Délka řezu (m):</label>
+                        <input type="number" id="cutLength" value="1" min="0.01" max="1000" step="0.1">
+                    </div>
+                </div>
+
+                <!-- Ekonomické parametry -->
+                <div class="card">
+                    <h2>Ekonomické parametry</h2>
+                    <div class="input-group">
+                        <label>Cena vody (Kč/m³):</label>
+                        <input type="number" id="waterCost" value="100" min="0" max="500">
+                    </div>
+                    <div class="input-group">
+                        <label>Cena abrasiva (Kč/kg):</label>
+                        <input type="number" id="abrasiveCost" value="15" min="0" max="100">
+                    </div>
+                    <div class="input-group">
+                        <label>Cena elektřiny (Kč/kWh):</label>
+                        <input type="number" id="electricityCost" value="5" min="0" max="20">
+                    </div>
+                    <div class="input-group">
+                        <label>Příkon stroje (kW):</label>
+                        <input type="number" id="machinePower" value="50" min="10" max="200">
+                    </div>
+                </div>
+
+                <!-- Výsledky -->
+                <div class="card results">
+                    <h2>📊 Výsledky výpočtů</h2>
+                    <div class="result-item">
+                        <span class="result-label">Průtok vody:</span>
+                        <span class="result-value" id="waterFlow">-</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Rychlost řezání:</span>
+                        <span class="result-value" id="cuttingSpeed">-</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Čas řezu:</span>
+                        <span class="result-value" id="cuttingTime">-</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Spotřeba vody:</span>
+                        <span class="result-value" id="waterConsumption">-</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Spotřeba abrasiva:</span>
+                        <span class="result-value" id="abrasiveConsumption">-</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Spotřeba elektřiny:</span>
+                        <span class="result-value" id="electricityConsumption">-</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Náklady na vodu:</span>
+                        <span class="result-value" id="waterCostResult">-</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Náklady na abrasivo:</span>
+                        <span class="result-value" id="abrasiveCostResult">-</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Náklady na elektřinu:</span>
+                        <span class="result-value" id="electricityCostResult">-</span>
+                    </div>
+                    <div class="result-item total">
+                        <span class="result-label">CELKOVÉ NÁKLADY:</span>
+                        <span class="result-value" id="totalCost">-</span>
+                    </div>
+                    <div class="result-item total">
+                        <span class="result-label">NÁKLADY NA METR:</span>
+                        <span class="result-value" id="costPerMeter">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="buttons">
+                <button class="btn-primary" onclick="calculate()">Vypočítat</button>
+                <button class="btn-secondary" onclick="reset()">Reset</button>
+            </div>
+        </main>
+
+        <footer>
+            <p>AWJ Kalkulačka © 2025 | Abrasive Water Jet Calculator</p>
+        </footer>
+    </div>
+
+    <script>
+        // Automatický výpočet při načtení
+        window.addEventListener('load', calculate);
+
+        // Automatický výpočet při změně vstupů
+        document.querySelectorAll('input, select').forEach(element => {
+            element.addEventListener('input', calculate);
+            element.addEventListener('change', calculate);
+        });
+
+        function calculate() {
+            try {
+                // Získání vstupů
+                const pressure = parseFloat(document.getElementById('pressure').value) || 0;
+                const orifice = parseFloat(document.getElementById('orifice').value) || 0;
+                const focusTube = parseFloat(document.getElementById('focusTube').value) || 0;
+                const abrasiveFlow = parseFloat(document.getElementById('abrasiveFlow').value) || 0;
+                const materialFactor = parseFloat(document.getElementById('material').value) || 1;
+                const thickness = parseFloat(document.getElementById('thickness').value) || 0;
+                const qualityFactor = parseFloat(document.getElementById('quality').value) || 1;
+                const cutLength = parseFloat(document.getElementById('cutLength').value) || 0;
+                const waterCost = parseFloat(document.getElementById('waterCost').value) || 0;
+                const abrasiveCost = parseFloat(document.getElementById('abrasiveCost').value) || 0;
+                const electricityCost = parseFloat(document.getElementById('electricityCost').value) || 0;
+                const machinePower = parseFloat(document.getElementById('machinePower').value) || 0;
+
+                // Výpočet průtoku vody (l/min)
+                const waterFlow = 0.6 * Math.pow(orifice, 2) * Math.sqrt(pressure);
+
+                // Výpočet rychlosti řezání (mm/min)
+                let baseSpeed = (pressure / 100) * (abrasiveFlow / 100) * qualityFactor;
+                baseSpeed = baseSpeed / (Math.pow(thickness, 0.8) * materialFactor);
+                baseSpeed = baseSpeed * (focusTube / 1.0);
+                const cuttingSpeed = Math.max(baseSpeed * 100, 1);
+
+                // Čas řezu (minuty)
+                const cuttingTimeMinutes = (cutLength * 1000) / cuttingSpeed;
+                const cuttingTimeHours = cuttingTimeMinutes / 60;
+
+                // Spotřeba
+                const waterConsumption = waterFlow * cuttingTimeMinutes;
+                const abrasiveConsumption = (abrasiveFlow * cuttingTimeMinutes) / 1000;
+                const electricityConsumption = machinePower * cuttingTimeHours;
+
+                // Náklady
+                const waterCostTotal = (waterConsumption / 1000) * waterCost;
+                const abrasiveCostTotal = abrasiveConsumption * abrasiveCost;
+                const electricityCostTotal = electricityConsumption * electricityCost;
+                const totalCost = waterCostTotal + abrasiveCostTotal + electricityCostTotal;
+                const costPerMeter = cutLength > 0 ? totalCost / cutLength : 0;
+
+                // Zobrazení výsledků
+                document.getElementById('waterFlow').textContent = waterFlow.toFixed(2) + ' l/min';
+                document.getElementById('cuttingSpeed').textContent = cuttingSpeed.toFixed(2) + ' mm/min';
+                document.getElementById('cuttingTime').textContent = formatTime(cuttingTimeMinutes);
+                document.getElementById('waterConsumption').textContent = waterConsumption.toFixed(2) + ' l';
+                document.getElementById('abrasiveConsumption').textContent = abrasiveConsumption.toFixed(2) + ' kg';
+                document.getElementById('electricityConsumption').textContent = electricityConsumption.toFixed(2) + ' kWh';
+                document.getElementById('waterCostResult').textContent = waterCostTotal.toFixed(2) + ' Kč';
+                document.getElementById('abrasiveCostResult').textContent = abrasiveCostTotal.toFixed(2) + ' Kč';
+                document.getElementById('electricityCostResult').textContent = electricityCostTotal.toFixed(2) + ' Kč';
+                document.getElementById('totalCost').textContent = totalCost.toFixed(2) + ' Kč';
+                document.getElementById('costPerMeter').textContent = costPerMeter.toFixed(2) + ' Kč/m';
+
+                console.log('Výpočet proběhl úspěšně');
+            } catch (error) {
+                console.error('Chyba při výpočtu:', error);
+                alert('Nastala chyba při výpočtu. Zkontrolujte prosím vstupní hodnoty.');
+            }
+        }
+
+        function formatTime(minutes) {
+            if (minutes < 1) {
+                return (minutes * 60).toFixed(0) + ' s';
+            } else if (minutes < 60) {
+                return minutes.toFixed(2) + ' min';
+            } else {
+                const hours = Math.floor(minutes / 60);
+                const mins = Math.floor(minutes % 60);
+                return hours + ' h ' + mins + ' min';
+            }
+        }
+
+        function reset() {
+            document.getElementById('pressure').value = 380;
+            document.getElementById('orifice').value = 0.33;
+            document.getElementById('focusTube').value = 1.02;
+            document.getElementById('abrasiveFlow').value = 350;
+            document.getElementById('material').value = '1.0';
+            document.getElementById('thickness').value = 10;
+            document.getElementById('quality').value = '1.0';
+            document.getElementById('cutLength').value = 1;
+            document.getElementById('waterCost').value = 100;
+            document.getElementById('abrasiveCost').value = 15;
+            document.getElementById('electricityCost').value = 5;
+            document.getElementById('machinePower').value = 50;
+            calculate();
+        }
+
+        // Klávesové zkratky
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                e.preventDefault();
+                calculate();
+            }
+        });
+    </script>
+</body>
+</html>

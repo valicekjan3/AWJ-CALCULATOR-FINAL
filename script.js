@@ -84,9 +84,9 @@ class AWJCalculator {
             const orifice = parseFloat(this.inputs.orifice.value) || 0;
             const focusTube = parseFloat(this.inputs.focusTube.value) || 0;
             const abrasiveFlow = parseFloat(this.inputs.abrasiveFlow.value) || 0;
-            const material = this.inputs.material.value;
+            const materialFactor = parseFloat(this.inputs.material.value) || 1.0;
             const thickness = parseFloat(this.inputs.thickness.value) || 0;
-            const quality = parseInt(this.inputs.quality.value) || 5;
+            const qualityFactor = parseFloat(this.inputs.quality.value) || 1.0;
             const cutLength = parseFloat(this.inputs.cutLength.value) || 0;
             const waterCost = parseFloat(this.inputs.waterCost.value) || 0;
             const abrasiveCost = parseFloat(this.inputs.abrasiveCost.value) || 0;
@@ -99,8 +99,6 @@ class AWJCalculator {
 
             // Výpočet rychlosti řezání (mm/min)
             // Závislost na tlaku, materiálu, tloušťce, kvalitě a průtoku abrasiva
-            const materialFactor = MATERIAL_FACTORS[material].hardness;
-            const qualityFactor = QUALITY_FACTORS[quality];
 
             // Základní rychlost řezání
             let baseSpeed = (pressure / 100) * (abrasiveFlow / 100) * qualityFactor;
@@ -190,9 +188,9 @@ class AWJCalculator {
         this.inputs.orifice.value = 0.33;
         this.inputs.focusTube.value = 1.02;
         this.inputs.abrasiveFlow.value = 350;
-        this.inputs.material.value = 'steel';
+        this.inputs.material.value = '1.0';
         this.inputs.thickness.value = 10;
-        this.inputs.quality.value = 5;
+        this.inputs.quality.value = '1.0';
         this.inputs.cutLength.value = 1;
         this.inputs.waterCost.value = 100;
         this.inputs.abrasiveCost.value = 15;
