@@ -1,0 +1,254 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWJ Kalkulačka - Výpočet parametrů vodního paprsku</title>
+
+    <!-- PWA Meta Tags -->
+    <meta name="description" content="Profesionální kalkulačka pro výpočet parametrů abrasivního vodního paprsku (AWJ)">
+    <meta name="theme-color" content="#1976d2">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="AWJ Kalkulačka">
+
+    <!-- PWA Icons -->
+    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'awj_app/icons/icon-192x192.png' %}">
+    <link rel="apple-touch-icon" sizes="192x192" href="{% static 'awj_app/icons/icon-192x192.png' %}">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="{% url 'awj_app:manifest' %}">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{% static 'awj_app/css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌊 AWJ Kalkulačka</h1>
+            <p class="subtitle">Kalkulačka parametrů abrasivního vodního paprsku (Abrasive Water Jet)</p>
+            <div id="install-prompt" class="install-prompt" style="display: none;">
+                <p>📱 Nainstalujte si aplikaci pro offline přístup!</p>
+                <button id="install-button">Nainstalovat</button>
+                <button id="dismiss-button">Zavřít</button>
+            </div>
+        </header>
+
+        <main>
+            <div class="calculator-grid">
+                <!-- Sekce 1: Základní parametry -->
+                <section class="card">
+                    <h2>Základní parametry</h2>
+                    <div class="input-group">
+                        <label for="pressure">Tlak (MPa):</label>
+                        <input type="number" id="pressure" value="380" min="100" max="620" step="10">
+                        <span class="unit">MPa</span>
+                    </div>
+                    <div class="input-group">
+                        <label for="orifice">Průměr trysky (mm):</label>
+                        <input type="number" id="orifice" value="0.33" min="0.1" max="0.5" step="0.01">
+                        <span class="unit">mm</span>
+                    </div>
+                    <div class="input-group">
+                        <label for="focusTube">Průměr fokusační trubice (mm):</label>
+                        <input type="number" id="focusTube" value="1.02" min="0.5" max="2.0" step="0.01">
+                        <span class="unit">mm</span>
+                    </div>
+                    <div class="input-group">
+                        <label for="abrasiveFlow">Průtok abrasiva (g/min):</label>
+                        <input type="number" id="abrasiveFlow" value="350" min="0" max="800" step="10">
+                        <span class="unit">g/min</span>
+                    </div>
+                </section>
+
+                <!-- Sekce 2: Materiál a řezání -->
+                <section class="card">
+                    <h2>Materiál a řezání</h2>
+                    <div class="input-group">
+                        <label for="material">Materiál:</label>
+                        <select id="material">
+                            <option value="1.0">Ocel</option>
+                            <option value="1.2">Nerezová ocel</option>
+                            <option value="0.6">Hliník</option>
+                            <option value="1.5">Titan</option>
+                            <option value="0.8">Sklo</option>
+                            <option value="1.3">Kámen</option>
+                            <option value="1.4">Keramika</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="thickness">Tloušťka materiálu (mm):</label>
+                        <input type="number" id="thickness" value="10" min="0.5" max="200" step="0.5">
+                        <span class="unit">mm</span>
+                    </div>
+                    <div class="input-group">
+                        <label for="quality">Kvalita řezu:</label>
+                        <select id="quality">
+                            <option value="4.0">Q1 - Separační řez</option>
+                            <option value="2.5">Q3 - Hrubý řez</option>
+                            <option value="1.0" selected>Q5 - Standardní řez</option>
+                            <option value="0.4">Q7 - Přesný řez</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="cutLength">Délka řezu (m):</label>
+                        <input type="number" id="cutLength" value="1" min="0.01" max="1000" step="0.1">
+                        <span class="unit">m</span>
+                    </div>
+                </section>
+
+                <!-- Sekce 3: Ekonomické parametry -->
+                <section class="card">
+                    <h2>Ekonomické parametry</h2>
+                    <div class="input-group">
+                        <label for="waterCost">Cena vody (Kč/m³):</label>
+                        <input type="number" id="waterCost" value="100" min="0" max="500" step="1">
+                        <span class="unit">Kč/m³</span>
+                    </div>
+                    <div class="input-group">
+                        <label for="abrasiveCost">Cena abrasiva (Kč/kg):</label>
+                        <input type="number" id="abrasiveCost" value="15" min="0" max="100" step="0.5">
+                        <span class="unit">Kč/kg</span>
+                    </div>
+                    <div class="input-group">
+                        <label for="electricityCost">Cena elektřiny (Kč/kWh):</label>
+                        <input type="number" id="electricityCost" value="5" min="0" max="20" step="0.1">
+                        <span class="unit">Kč/kWh</span>
+                    </div>
+                    <div class="input-group">
+                        <label for="machinePower">Příkon stroje (kW):</label>
+                        <input type="number" id="machinePower" value="50" min="10" max="200" step="5">
+                        <span class="unit">kW</span>
+                    </div>
+                </section>
+
+                <!-- Sekce 4: Výsledky -->
+                <section class="card results">
+                    <h2>📊 Výsledky výpočtů</h2>
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <span class="result-label">Průtok vody:</span>
+                            <span class="result-value" id="waterFlow">-</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Rychlost řezání:</span>
+                            <span class="result-value" id="cuttingSpeed">-</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Čas řezu:</span>
+                            <span class="result-value" id="cuttingTime">-</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Spotřeba vody:</span>
+                            <span class="result-value" id="waterConsumption">-</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Spotřeba abrasiva:</span>
+                            <span class="result-value" id="abrasiveConsumption">-</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Spotřeba elektřiny:</span>
+                            <span class="result-value" id="electricityConsumption">-</span>
+                        </div>
+                        <div class="result-item highlight">
+                            <span class="result-label">Náklady na vodu:</span>
+                            <span class="result-value" id="waterCostResult">-</span>
+                        </div>
+                        <div class="result-item highlight">
+                            <span class="result-label">Náklady na abrasivo:</span>
+                            <span class="result-value" id="abrasiveCostResult">-</span>
+                        </div>
+                        <div class="result-item highlight">
+                            <span class="result-label">Náklady na elektřinu:</span>
+                            <span class="result-value" id="electricityCostResult">-</span>
+                        </div>
+                        <div class="result-item total">
+                            <span class="result-label">Celkové náklady:</span>
+                            <span class="result-value" id="totalCost">-</span>
+                        </div>
+                        <div class="result-item total">
+                            <span class="result-label">Náklady na metr:</span>
+                            <span class="result-value" id="costPerMeter">-</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="button-container">
+                <button id="calculateBtn" class="btn-primary">Vypočítat</button>
+                <button id="resetBtn" class="btn-secondary">Reset</button>
+            </div>
+        </main>
+
+        <footer>
+            <p>AWJ Kalkulačka © 2025 | Abrasive Water Jet Calculator</p>
+            <p class="info">Hodnoty jsou orientační a mohou se lišit dle specifických podmínek řezání.</p>
+            <p class="pwa-status" id="pwa-status">
+                <span id="online-status">🟢 Online</span>
+            </p>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="{% static 'awj_app/js/script.js' %}"></script>
+    <script>
+        // PWA Installation handling
+        let deferredPrompt;
+        const installPrompt = document.getElementById('install-prompt');
+        const installButton = document.getElementById('install-button');
+        const dismissButton = document.getElementById('dismiss-button');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installPrompt.style.display = 'block';
+        });
+
+        installButton.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                console.log(`User response to the install prompt: ${outcome}`);
+                deferredPrompt = null;
+                installPrompt.style.display = 'none';
+            }
+        });
+
+        dismissButton.addEventListener('click', () => {
+            installPrompt.style.display = 'none';
+        });
+
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('{% url "awj_app:service_worker" %}')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful');
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+
+        // Online/Offline status
+        const onlineStatus = document.getElementById('online-status');
+
+        function updateOnlineStatus() {
+            if (navigator.onLine) {
+                onlineStatus.textContent = '🟢 Online';
+                onlineStatus.style.color = '#4caf50';
+            } else {
+                onlineStatus.textContent = '🔴 Offline';
+                onlineStatus.style.color = '#f44336';
+            }
+        }
+
+        window.addEventListener('online', updateOnlineStatus);
+        window.addEventListener('offline', updateOnlineStatus);
+        updateOnlineStatus();
+    </script>
+</body>
+</html>
